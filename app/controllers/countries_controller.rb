@@ -4,10 +4,12 @@ class CountriesController < ApplicationController
   # GET /countries or /countries.json
   def index
     @countries = Country.all
+    render json: @countries
   end
 
   # GET /countries/1 or /countries/1.json
   def show
+    render json: @country
   end
 
   # GET /countries/new

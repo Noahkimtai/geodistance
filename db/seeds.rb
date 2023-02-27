@@ -5,9 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
-places = Place.create!([{name: 'Nairobi',country_id:0,latitude:-1.286389 , longitude: 36.817223, description: 'capital city of Kenya' },{name:'Lagos', country_id:1,latitude:6.5243793 , longitude:3.379205700000057,description:'capital city of Nigeria'}])
-
-countries = Country.create!([{name: 'Kenya', region_id:0},{name: "Nigeria", region_id:0}])
-
+puts('Seeding regions....')
+Region.destroy_all
 regions = Region.create!([{name: 'Africa'}])
+
+puts('Seeding countries....')
+Country.destroy_all
+countries = Country.create!([{name: 'Kenya', region_id:1},{name: "Nigeria", region_id:1}])
+
+puts('Seeding places....')
+Place.destroy_all
+places = Place.create!([{name: 'Nairobi',country_id:1,latitude:-1.286389 , longitude: 36.817223, description: 'capital city of Kenya' },{name:'Lagos', country_id:2,latitude:6.5243793 , longitude:3.379205700000057,description:'capital city of Nigeria'}])

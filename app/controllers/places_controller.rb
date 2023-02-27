@@ -4,10 +4,12 @@ class PlacesController < ApplicationController
   # GET /places or /places.json
   def index
     @places = Place.all
+    render json: @places
   end
 
   # GET /places/1 or /places/1.json
   def show
+    render json: @place
   end
 
   # GET /places/new

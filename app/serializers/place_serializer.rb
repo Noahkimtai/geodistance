@@ -1,5 +1,5 @@
 class PlaceSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name,:latitude, :longitude, :description
 
   belongs_to :country
 end
