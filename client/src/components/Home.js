@@ -11,7 +11,7 @@ function Home(){
                 <div>
                     <input type='text' placeholder='Enter your final destination'></input>
                 </div>
-                    <input type= 'submit'> Submit</input>
+                    <input type= 'submit'></input>
                 <div>
                     <select className ="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                         <option value='Air'>Air</option>

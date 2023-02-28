@@ -7,6 +7,8 @@ class PlacesController < ApplicationController
     render json: @places
   end
 
+
+
   # GET /places/1 or /places/1.json
   def show
     render json: @place
@@ -58,6 +60,8 @@ class PlacesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
