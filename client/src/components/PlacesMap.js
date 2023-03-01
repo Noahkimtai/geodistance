@@ -23,7 +23,7 @@ function PlacesMap(){
                 />
                 <Marker position={[-1.286389, 36.817223]}>
                     <Popup>
-                      A pretty CSS3 popup. <br /> Easily customizable.
+                      Town Name and description
                     </Popup>
                 </Marker>
             </MapContainer>
