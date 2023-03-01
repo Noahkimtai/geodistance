@@ -1,4 +1,5 @@
 import react from 'react'
+import PlacesMap from './PlacesMap';
 
 function Home(){
     return(
@@ -21,6 +22,7 @@ function Home(){
                     </select>
                 </div>
             </form>
+            <PlacesMap />
         </div>
     )
 }
