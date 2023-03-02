@@ -3,12 +3,14 @@ import react,  {useEffect, useState} from 'react'
 import PlacesMap from './PlacesMap';
 
 function Home(){
-    const [places, setPlaces] = []
+    const [places, setPlaces] = useState([]);
     
     useEffect(()=>{
-        fetch('http://127.0.0.1:3000/places').then(res => res.json()).
-        then(data => setPlaces(data)).then(data => console.log(data))
-    },[])
+        fetch ('http://localhost:3000/places')
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+     }, [])
+     
     return(
         <div>
             Calculate distance, cost and travel time.
