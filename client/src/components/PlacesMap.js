@@ -6,7 +6,7 @@ import {MapContainer, TileLayer, useMap,Map, Marker, Popup} from 'react-leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-function PlacesMap(){
+function PlacesMap({places}){
 
     let DefaultIcon = L.icon({
         iconUrl: icon,
@@ -14,9 +14,10 @@ function PlacesMap(){
     });
     
     L.Marker.prototype.options.icon = DefaultIcon;
+    let coord =[[-1.286389, 36.817223],[6.5243793,3.379205700000057,]]
     return(
         <div>
-            <MapContainer center={[-1.286389, 36.817223]} style={{ height: '500px' }} zoom={13} scrollWheelZoom={false}>
+            <MapContainer center={[-1.286389, 36.817223]} style={{ height: '500px' }} zoom={8} scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

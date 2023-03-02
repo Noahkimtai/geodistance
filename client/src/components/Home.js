@@ -8,7 +8,7 @@ function Home(){
     useEffect(()=>{
         fetch ('http://localhost:3000/places')
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => setPlaces(data))
      }, [])
      
     return(
@@ -31,7 +31,7 @@ function Home(){
                     </select>
                 </div>
             </form>
-            <PlacesMap />
+            <PlacesMap places = {places}/>
         </div>
     )
 }
