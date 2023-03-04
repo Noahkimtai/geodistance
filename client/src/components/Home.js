@@ -6,7 +6,7 @@ function Home(){
     const [places, setPlaces] = useState([]);
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('')
-    const [distanceData, setDistanceData] = useState([])
+    const [distanceData, setDistanceData] = useState(null)
     
     useEffect(()=>{
         fetch ('http://localhost:3000/places')
@@ -16,8 +16,6 @@ function Home(){
 
      const handleSubmit = (e) => {
         e.preventDefault()
-        alert(origin)
-        alert(destination)
         fetch(`http://127.0.0.1:3000/distance_calculator/distance?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`)
         .then(res => res.json())
         .then(data => setDistanceData(data))
