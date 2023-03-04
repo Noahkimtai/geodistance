@@ -14,7 +14,6 @@ function PlacesMap({places}){
     });
     
     L.Marker.prototype.options.icon = DefaultIcon;
-    let coord =[[-1.286389, 36.817223],[6.5243793,3.379205700000057,]]
     return(
         <div>
             <MapContainer center={[-1.286389, 36.817223]} style={{ height: '500px' }} zoom={8} scrollWheelZoom={false}>
@@ -22,11 +21,13 @@ function PlacesMap({places}){
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[-1.286389, 36.817223]}>
-                    <Popup>
-                      Town Name and description
-                    </Popup>
-                </Marker>
+                
+                {places.map((point) => {
+                    return(<Marker position={[point.latitude,point.longitude]}>
+                            <Popup>
+                            Town Name and description
+                            </Popup>
+                        </Marker>)})}
             </MapContainer>
         </div>
     )
