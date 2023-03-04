@@ -4,22 +4,36 @@ import PlacesMap from './PlacesMap';
 
 function Home(){
     const [places, setPlaces] = useState([]);
+    const [origin, setOrigin] = useState('');
+    const [destination, setDestination] = useState('')
+    const [distanceData, setDistanceData] = useState([])
     
     useEffect(()=>{
         fetch ('http://localhost:3000/places')
         .then(resp => resp.json())
         .then(data => setPlaces(data))
      }, [])
+
+     const handleSubmit = (e) => {
+        e.preventDefault()
+        alert(origin)
+        alert(destination)
+        fetch(`http://127.0.0.1:3000/distance_calculator/distance?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`)
+        .then(res => res.json())
+        .then(data => {setDistanceData(data)
+            console.log(data)})
+        .then(error => console.log(error))
+     }
      
     return(
         <div>
             Calculate distance, cost and travel time.
-            <form className='p-2'>
+            <form className='p-2' onSubmit={handleSubmit}>
                 <div>
-                    <input type='text' placeholder='Enter your pointer of origin'></input>
+                    <input type='text' placeholder='Enter your pointer of origin' onChange={e => setOrigin(e.target.value)}></input>
                 </div>
                 <div>
-                    <input type='text' placeholder='Enter your final destination'></input>
+                    <input type='text' placeholder='Enter your final destination' onChange={e => setDestination(e.target.value)}></input>
                 </div>
                     <input type= 'submit'></input>
                 <div>
