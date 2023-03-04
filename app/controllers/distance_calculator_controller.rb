@@ -27,7 +27,7 @@ class DistanceCalculatorController < ApplicationController
         earth_radius = 6371.0
         a = Math.sin(lat_change/2)**2 + Math.cos(origin_lat) * Math.cos(destination_lat) * Math.sin(long_change/2)**2
         c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-        distance = earth_radius * c
+        distance = earth_radius * c * 1.60934
 
         # Add the places to databse
         Place.create!([{name: origin,country_id:1,latitude:origin_lat , longitude: origin_long, description: 'capital city of Kenya' },{name:destination, country_id:2,latitude:destination_lat , longitude:destination_long,description:'capital city of Nigeria'}])

@@ -45,6 +45,7 @@ function Home(){
                     </select>
                 </div>
             </form>
+            {distanceData && <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers.</p>}
             <PlacesMap places = {places}/>
         </div>
     )
