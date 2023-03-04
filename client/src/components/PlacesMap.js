@@ -16,6 +16,7 @@ function PlacesMap({places}){
     L.Marker.prototype.options.icon = DefaultIcon;
     return(
         <div>
+            <p>People also travelled to this destinations</p>
             <MapContainer center={[-1.286389, 36.817223]} style={{ height: '500px' }} zoom={8} scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -25,7 +26,7 @@ function PlacesMap({places}){
                 {places.map((point) => {
                     return(<Marker position={[point.latitude,point.longitude]}>
                             <Popup>
-                            Town Name and description
+                             {point.name} {point.description}
                             </Popup>
                         </Marker>)})}
             </MapContainer>

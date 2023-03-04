@@ -20,8 +20,7 @@ function Home(){
         alert(destination)
         fetch(`http://127.0.0.1:3000/distance_calculator/distance?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`)
         .then(res => res.json())
-        .then(data => {setDistanceData(data)
-            console.log(data)})
+        .then(data => setDistanceData(data))
         .then(error => console.log(error))
      }
      
@@ -45,7 +44,7 @@ function Home(){
                     </select>
                 </div>
             </form>
-            {distanceData && <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers.</p>}
+            {distanceData&& <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers</p>}
             <PlacesMap places = {places}/>
         </div>
     )
