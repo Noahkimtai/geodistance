@@ -14,11 +14,10 @@ class DistanceCalculatorController < ApplicationController
         origin_lat = origin_data['lat'].to_f
         origin_long = origin_data['lon'].to_f
     
-        url = "https://nominatim.openstreetmap.org/search?q=#{destion}&format=json"
+        url = "https://nominatim.openstreetmap.org/search?q=#{destination}&format=json"
         uri = URI.parse(url)
         response = Net::HTTP.get(uri)
         destination_data =JSON.parse(response)[0]
-        byebug
         destination_lat = destination_data['lat'].to_f
         destination_long = destination_data['lon'].to_f
         
