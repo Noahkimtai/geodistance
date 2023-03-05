@@ -13,6 +13,7 @@ class DistanceCalculatorController < ApplicationController
         origin_data = JSON.parse(response)[0]
         origin_lat = origin_data['lat'].to_f
         origin_long = origin_data['lon'].to_f
+        origin_country = origin_data['display_name'].split(" ").last
     
         url = "https://nominatim.openstreetmap.org/search?q=#{destination}&format=json"
         uri = URI.parse(url)
@@ -20,6 +21,7 @@ class DistanceCalculatorController < ApplicationController
         destination_data =JSON.parse(response)[0]
         destination_lat = destination_data['lat'].to_f
         destination_long = destination_data['lon'].to_f
+        destination_country = destination_data['display_name'].split(" ").last
         
         # Calculate the distance between the two points
         lat_change = destination_lat - origin_lat
@@ -30,10 +32,13 @@ class DistanceCalculatorController < ApplicationController
         distance = earth_radius * c * 1.60934
 
         # Add the places to databse
-        Place.create!([{name: origin,country_id:1,latitude:origin_lat , longitude: origin_long, description: '' },{name:destination, country_id:2,latitude:destination_lat , longitude:destination_long,description:''}])
+        Country.create!([{name: origin_country, region_id:1},{name: destination_country, region_id:1}])
+        Place.create!([{name: origin,country_id: Country.find_by(name:origin_country).id,latitude:origin_lat , longitude: origin_long, description: '' },{name:destination, country_id: Country.find_by(name:destination_country).id,latitude:destination_lat , longitude:destination_long,description:''}])
     
         # return the distance
-        render json: {distance: distance.round(2), 
+        render json: {distance: distance.round(2),
+            origin_country: origin_country,
+            destination_country: destination_country,
             origin: {latitude: origin_lat, longitude: origin_long},
             destination: {latitude: destination_lat, longitude: destination_long}
         }
