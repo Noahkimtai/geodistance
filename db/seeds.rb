@@ -5,13 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-puts('Seeding regions....')
-Region.destroy_all
-regions = Region.create!([{name: 'Africa'}])
 
 puts('Seeding countries....')
 Country.destroy_all
-countries = Country.create!([{name: 'Kenya', region_id:1},{name: "Nigeria", region_id:1}])
+countries = Country.create!([{name: 'Kenya'},{name: "Nigeria"}])
 
 puts('Seeding places....')
 Place.destroy_all
