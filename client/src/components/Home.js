@@ -5,6 +5,7 @@ import PlacesMap from './PlacesMap';
 function Home(){
     const [places, setPlaces] = useState([]);
     const [origin, setOrigin] = useState('');
+    const [mapCenter, setMapCenter] = useState([0,0])
     const [destination, setDestination] = useState('')
     const [transportMode, setTransportMode] = useState('')
     const [distanceData, setDistanceData] = useState(null)
@@ -13,7 +14,14 @@ function Home(){
     useEffect(()=>{
         fetch ('http://localhost:3000/places')
         .then(resp => resp.json())
-        .then(data => setPlaces(data))
+        .then(data =>{setPlaces(data);
+            // Calculate the center of the map based on the coordinates of the places
+            const latitudes = data.map(place => place.latitude);
+            const longitudes = data.map(place => place.longitude);
+            const centerLatitude = (Math.min(...latitudes) + Math.max(...latitudes)) / 2;
+            const centerLongitude = (Math.min(...longitudes) + Math.max(...longitudes)) / 2;
+            setMapCenter([centerLatitude, centerLongitude]);
+    })     
      }, [])
 
      const handleSubmit = (e) => {
@@ -62,7 +70,7 @@ function Home(){
                     <input type='submit' placeholder = 'Share'></input>
                 </div>
                 </form>}
-            <PlacesMap places = {places}/>
+            <PlacesMap mapCenter = {mapCenter} places = {places}/>
         </div>
     )
 }
