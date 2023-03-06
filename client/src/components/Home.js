@@ -6,6 +6,7 @@ function Home(){
     const [places, setPlaces] = useState([]);
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('')
+    const [transportMode, setTransportMode] = useState('')
     const [distanceData, setDistanceData] = useState(null)
     
     useEffect(()=>{
@@ -16,10 +17,15 @@ function Home(){
 
      const handleSubmit = (e) => {
         e.preventDefault()
-        fetch(`http://127.0.0.1:3000/distance_calculator/distance?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`)
+        fetch(`http://127.0.0.1:3000/distance_calculator/distance?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&transport_mode=${encodeURIComponent(transportMode)}`)
         .then(res => res.json())
         .then(data => setDistanceData(data))
         .then(error => console.log(error))
+     }
+
+     const handleSelect = (e) => {
+        e.preventDefault()
+        setTransportMode(e.target.value)
      }
      
     return(
@@ -32,17 +38,18 @@ function Home(){
                 <div>
                     <input type='text' placeholder='Enter your final destination' onChange={e => setDestination(e.target.value)}></input>
                 </div>
-                    <input type= 'submit'></input>
+                    
                 <div>
-                    <select className ="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                    <select onChange= {handleSelect} className ="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                         <option value='Air'>Air</option>
                         <option value='Water'>Water</option>
                         <option value='Road'>Road</option>
                         <option value='Rail'>Rail</option>
                     </select>
                 </div>
+                <input type= 'submit'></input>
             </form>
-            {distanceData&& <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers</p>}
+            {distanceData&& <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers by {transportMode} it will take you hours travel time</p>}
             <PlacesMap places = {places}/>
         </div>
     )

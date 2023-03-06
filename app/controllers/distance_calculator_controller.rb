@@ -32,8 +32,9 @@ class DistanceCalculatorController < ApplicationController
         distance = earth_radius * c * 1.60934
 
         # Add the places to databse
-        Country.create!([{name: origin_country, region_id:1},{name: destination_country, region_id:1}])
+        Country.create!([{name: origin_country},{name: destination_country}])
         Place.create!([{name: origin,country_id: Country.find_by(name:origin_country).id,latitude:origin_lat , longitude: origin_long, description: '' },{name:destination, country_id: Country.find_by(name:destination_country).id,latitude:destination_lat , longitude:destination_long,description:''}])
+        Route.create!([origin:origin, destination:destination, transport_mode: params[:transport_mode], count:1])
     
         # return the distance
         render json: {distance: distance.round(2),
