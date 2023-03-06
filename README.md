@@ -1,5 +1,16 @@
-# README
+## Introduction
+This is a simple tool that facilitate collection of data on travel routes and places as well as provide travel time, cost to the user.
+### User Stories
+1. The user can enter the destination name into an online form
+1. The user can enter place of origin name
+1. The user can select mode of transport
+1. The user will get the distance between the two points
+1. The user will get the total approximate travel time 
+1. The user will get description of his/her destination as per other users
+1. User can add something interesting the description of a route
+1. User can view places commonly travelled by others on a map
 Things you may want to cover:
+
 ## Requirements
 
 - Ruby 3.0.2p107
@@ -7,12 +18,8 @@ Things you may want to cover:
 - NodeJS (v16), and npm
 - Postgresql
 - OpenStreeMap
-- Words API
-- Ruby Geocoder
 
-See Environment Setup below for instructions on installing these tools if you
-don't already have them.
-
+See Environment Setup below for instructions on installing these tools if you don't already have them.
 ## Setup
 When you're ready to start building your project, run:
 
@@ -32,15 +39,7 @@ You can use the following commands to run the application:
 * System dependencies
 
 * Configuration
-## Introduction
-### User Stories
-1. The user can enter the destination name into an online form
-1. The user can enter place of origin
-1. The user can select mode of transport
-1. The user will get the distance between the two points
-1. The user will get the total travel time 
-1. The user will get description of his/her destination
-1. User can add something interesting the description of destination
+
 
 ## Instructions
 
@@ -86,5 +85,3 @@ Each application will run on its own port on `localhost`:
 * How to run the test suite
 
 * Deployment instructions
-
-* ...
