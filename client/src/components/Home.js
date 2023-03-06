@@ -8,6 +8,7 @@ function Home(){
     const [destination, setDestination] = useState('')
     const [transportMode, setTransportMode] = useState('')
     const [distanceData, setDistanceData] = useState(null)
+    const [routeDescription, setRouteDescription] = useState('')
     
     useEffect(()=>{
         fetch ('http://localhost:3000/places')
@@ -26,6 +27,10 @@ function Home(){
      const handleSelect = (e) => {
         e.preventDefault()
         setTransportMode(e.target.value)
+     }
+
+     const handleRouteDescription = (e) => {
+        e.preventDefault()
      }
      
     return(
@@ -50,6 +55,13 @@ function Home(){
                 <input type= 'submit'></input>
             </form>
             {distanceData&& <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers by {transportMode} it will take you hours travel time</p>}
+            {distanceData&& <form onSubmit={handleRouteDescription}>
+                <div>
+                    <input onChange = {e => setRouteDescription(e.target.value)} placeholder= 'Share something about this route'>
+                    </input>
+                    <input type='submit' placeholder = 'Share'></input>
+                </div>
+                </form>}
             <PlacesMap places = {places}/>
         </div>
     )

@@ -24,7 +24,7 @@ function PlacesMap({places}){
                 />
                 
                 {places.map((point) => {
-                    return(<Marker position={[point.latitude,point.longitude]}>
+                    return(<Marker key = {point.id} position={[point.latitude,point.longitude]}>
                             <Popup>
                              {point.name} {point.description}
                             </Popup>
