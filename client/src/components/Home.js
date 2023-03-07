@@ -39,6 +39,20 @@ function Home(){
 
      const handleRouteDescription = (e) => {
         e.preventDefault()
+        fetch(`http://127.0.0.1:3000/routes/${distanceData.route_id}`,{
+            method: 'PUT',
+            mode: 'cors',
+            body: JSON.stringify({route: {experience: routeDescription}}),
+            header:{
+                "Content-Type": "application/json"
+            }
+        }).then(response =>response.json())
+        .then(data =>{
+            alert('shared successfully')
+        })
+        .catch(error =>{
+            alert(error)
+        })
      }
      
     return(

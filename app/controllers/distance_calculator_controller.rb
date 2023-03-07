@@ -35,13 +35,14 @@ class DistanceCalculatorController < ApplicationController
         Country.create!([{name: origin_country},{name: destination_country}])
         Place.create!([{name: origin,country_id: Country.find_by(name:origin_country).id,latitude:origin_lat , longitude: origin_long, description: '' },{name:destination, country_id: Country.find_by(name:destination_country).id,latitude:destination_lat , longitude:destination_long,description:''}])
         Route.create!([origin:origin, destination:destination, transport_mode: params[:transport_mode], count:1])
-    
+        route_id = Route.find_by(origin:origin, destination:destination).id
         # return the distance
         render json: {distance: distance.round(2),
             origin_country: origin_country,
             destination_country: destination_country,
             origin: {latitude: origin_lat, longitude: origin_long},
-            destination: {latitude: destination_lat, longitude: destination_long}
+            destination: {latitude: destination_lat, longitude: destination_long},
+            route_id: route_id
         }
         
         end

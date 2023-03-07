@@ -12,7 +12,6 @@ This is a simple tool that facilitate collection of data on travel routes and pl
 Things you may want to cover:
 
 ## Requirements
-
 - Ruby 3.0.2p107
 - Rails version: 7.0.4.2
 - NodeJS (v16), and npm
