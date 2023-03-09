@@ -1,4 +1,4 @@
-import { data } from 'autoprefixer';
+//import { data } from 'autoprefixer';
 import react,  {useEffect, useState} from 'react'
 import PlacesMap from './PlacesMap';
 
@@ -40,9 +40,9 @@ function Home(){
      const handleRouteDescription = (e) => {
         e.preventDefault()
         fetch(`http://127.0.0.1:3000/routes/${distanceData.route_id}`,{
-            method: 'PUT',
+            method: 'PATCH',
             mode: 'cors',
-            body: JSON.stringify({route: {experience: routeDescription}}),
+            body: JSON.stringify({experience: routeDescription}),
             header:{
                 "Content-Type": "application/json"
             }
@@ -54,7 +54,9 @@ function Home(){
             alert(error)
         })
      }
-     
+     const travelModes ={'Air':[750,0.05],'Water':[50,0.02],'Road':[180,1.8],'Rail':[300,0.01]}
+     const Air = 'Air'
+     //{travelModes.transportMode[0]} hours travel time and a cost of up to {travelModes.transportMode[1]} US dollars
     return(
         <div>
             Calculate distance, cost and travel time.
@@ -76,7 +78,14 @@ function Home(){
                 </div>
                 <input type= 'submit'></input>
             </form>
-            {distanceData&& <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers by {transportMode} it will take you hours travel time</p>}
+            {distanceData&& 
+            <div>
+                <p>{origin} is at Latitude:{distanceData.origin.latitude}Longitude:{distanceData.origin.longitude}</p>
+                <p>{destination} is at Latitude:{distanceData.destination.latitude}Longitude:{distanceData.destination.longitude}</p>
+                <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers by {transportMode} 
+                it will take you {distanceData.distance / travelModes[transportMode][0]} hours and cost {travelModes[transportMode][1]* distanceData.distance} US dollars </p>
+            </div>
+            }
             {distanceData&& <form onSubmit={handleRouteDescription}>
                 <div>
                     <input onChange = {e => setRouteDescription(e.target.value)} placeholder= 'Share something about this route'>

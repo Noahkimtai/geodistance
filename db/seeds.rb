@@ -12,4 +12,4 @@ countries = Country.create!([{name: 'Kenya'},{name: "Nigeria"}])
 
 puts('Seeding places....')
 Place.destroy_all
-places = Place.create!([{name: 'Nairobi',country_id:14,latitude:-1.286389 , longitude: 36.817223, description: 'capital city of Kenya' },{name:'Lagos', country_id:15,latitude:6.5243793 , longitude:3.379205700000057,description:'capital city of Nigeria'}])
+places = Place.create!([{name: 'Nairobi',country_id:61,latitude:-1.286389 , longitude: 36.817223, description: 'capital city of Kenya' },{name:'Lagos', country_id:62,latitude:6.5243793 , longitude:3.379205700000057,description:'capital city of Nigeria'}])
