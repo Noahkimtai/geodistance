@@ -4,10 +4,13 @@ class RoutesController < ApplicationController
   # GET /routes or /routes.json
   def index
     @routes = Route.all
+
+    render json: @routes
   end
 
   # GET /routes/1 or /routes/1.json
   def show
+    render json: @route
   end
 
   # GET /routes/new
@@ -17,6 +20,12 @@ class RoutesController < ApplicationController
 
   # GET /routes/1/edit
   def edit
+    @route = Route.find(params[:id])
+    if @route.update(route_params)
+      render json: @route
+    else
+      render json: { errors: @route.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   # POST /routes or /routes.json
@@ -65,6 +74,6 @@ class RoutesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def route_params
-      params.require(:route).permit(:origin, :destination, :transport_mode, :count)
+      params.require(:route).permit(:origin, :destination, :transport_mode, :count, :experience)
     end
 end

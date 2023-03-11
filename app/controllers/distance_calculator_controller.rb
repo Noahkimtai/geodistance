@@ -44,9 +44,9 @@ class DistanceCalculatorController < ApplicationController
         end
         
         if !Route.exists?(origin: origin)
-            Route.create!([origin:origin, destination:destination, transport_mode: params[:transport_mode], count:1])
+            Route.create!(origin:origin, destination:destination, transport_mode: params[:transport_mode], count:1)
         end
-        
+
         route_id = Route.find_by(origin:origin, destination:destination).id
         
         

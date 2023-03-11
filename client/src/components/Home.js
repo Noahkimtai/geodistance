@@ -42,8 +42,8 @@ function Home(){
         fetch(`http://127.0.0.1:3000/routes/${distanceData.route_id}`,{
             method: 'PATCH',
             mode: 'cors',
-            body: JSON.stringify({experience: routeDescription}),
-            header:{
+            body: JSON.stringify({'route':{'experience': routeDescription}}),
+            headers:{
                 "Content-Type": "application/json"
             }
         }).then(response =>response.json())
@@ -76,6 +76,7 @@ function Home(){
                         <option value='Rail'>Rail</option>
                     </select>
                 </div>
+
                 <input type= 'submit'></input>
             </form>
             {distanceData&& 
@@ -87,7 +88,8 @@ function Home(){
                 it will take you {Math.round(distanceData.distance / travelModes[transportMode][0])} hours and cost {Math.round(travelModes[transportMode][1]* distanceData.distance)} US dollars </p>
             </div>
             }
-            {distanceData&& <form onSubmit={handleRouteDescription}>
+            {distanceData&& 
+            <form onSubmit={handleRouteDescription}>
                 <div>
                     <input onChange = {e => setRouteDescription(e.target.value)} placeholder= 'Share something about this route'>
                     </input>

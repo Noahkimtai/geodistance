@@ -1,3 +1,3 @@
 class RouteSerializer < ActiveModel::Serializer
-  attributes :id, :origin, :destination, :transport_mode, :count
+  attributes :id, :origin, :destination, :transport_mode, :count, :experience
 end
