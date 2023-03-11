@@ -81,9 +81,10 @@ function Home(){
             {distanceData&& 
             <div>
                 <p>{origin} is at Latitude:{distanceData.origin.latitude}Longitude:{distanceData.origin.longitude}</p>
-                <p>{destination} is at Latitude:{distanceData.destination.latitude}Longitude:{distanceData.destination.longitude}</p>
+                <p>{destination} is at <span> Latitude:{distanceData.destination.latitude}</span>
+                <span>Longitude:{distanceData.destination.longitude}</span></p>
                 <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers by {transportMode} 
-                it will take you {distanceData.distance / travelModes[transportMode][0]} hours and cost {travelModes[transportMode][1]* distanceData.distance} US dollars </p>
+                it will take you {Math.round(distanceData.distance / travelModes[transportMode][0])} hours and cost {Math.round(travelModes[transportMode][1]* distanceData.distance)} US dollars </p>
             </div>
             }
             {distanceData&& <form onSubmit={handleRouteDescription}>
