@@ -1,6 +1,7 @@
 //import { data } from 'autoprefixer';
 import react,  {useEffect, useState} from 'react'
 import PlacesMap from './PlacesMap';
+import '../App.css';
 
 function Home(){
     const [places, setPlaces] = useState([]);
@@ -58,18 +59,18 @@ function Home(){
      const Air = 'Air'
      //{travelModes.transportMode[0]} hours travel time and a cost of up to {travelModes.transportMode[1]} US dollars
     return(
-        <div>
+        <div className='form-container'>
             Calculate distance, cost and travel time.
-            <form className='p-2' onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <input type='text' placeholder='Enter your pointer of origin' onChange={e => setOrigin(e.target.value)}></input>
+                    <input type='text' placeholder='Enter your point of origin' onChange={e => setOrigin(e.target.value)}></input>
                 </div>
                 <div>
                     <input type='text' placeholder='Enter your final destination' onChange={e => setDestination(e.target.value)}></input>
                 </div>
                     
                 <div>
-                    <select onChange= {handleSelect} className ="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                    <select onChange= {handleSelect}>
                         <option value='Air'>Air</option>
                         <option value='Water'>Water</option>
                         <option value='Road'>Road</option>
@@ -89,13 +90,15 @@ function Home(){
             </div>
             }
             {distanceData&& 
-            <form onSubmit={handleRouteDescription}>
+            <div className='form-container'>
+                <form onSubmit={handleRouteDescription}>
                 <div>
                     <input onChange = {e => setRouteDescription(e.target.value)} placeholder= 'Share something about this route'>
                     </input>
                     <input type='submit' placeholder = 'Share'></input>
                 </div>
-                </form>}
+            </form>
+            </div>}
             <PlacesMap mapCenter = {mapCenter} places = {places}/>
         </div>
     )
