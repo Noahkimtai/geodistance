@@ -11,6 +11,7 @@ function Home(){
     const [transportMode, setTransportMode] = useState('')
     const [distanceData, setDistanceData] = useState(null)
     const [routeDescription, setRouteDescription] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     
     useEffect(()=>{
         fetch ('http://localhost:3000/places')
@@ -27,6 +28,7 @@ function Home(){
 
      const handleSubmit = (e) => {
         e.preventDefault()
+        setIsLoading(true)
         fetch(`http://127.0.0.1:3000/distance_calculator/distance?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&transport_mode=${encodeURIComponent(transportMode)}`)
         .then(res => res.json())
         .then(data => setDistanceData(data))
@@ -80,6 +82,7 @@ function Home(){
 
                 <input type= 'submit'></input>
             </form>
+            {isLoading&& <div> Calculating........</div>}
             {distanceData&& 
             <div>
                 <p>{origin} is at Latitude:{distanceData.origin.latitude}Longitude:{distanceData.origin.longitude}</p>

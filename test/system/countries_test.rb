@@ -15,7 +15,6 @@ class CountriesTest < ApplicationSystemTestCase
     click_on "New country"
 
     fill_in "Name", with: @country.name
-    fill_in "Region", with: @country.region_id
     click_on "Create Country"
 
     assert_text "Country was successfully created"
@@ -27,7 +26,6 @@ class CountriesTest < ApplicationSystemTestCase
     click_on "Edit this country", match: :first
 
     fill_in "Name", with: @country.name
-    fill_in "Region", with: @country.region_id
     click_on "Update Country"
 
     assert_text "Country was successfully updated"
