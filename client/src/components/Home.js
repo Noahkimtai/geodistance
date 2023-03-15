@@ -57,9 +57,10 @@ function Home(){
             alert(error)
         })
      }
+
+     // travel modes average speed and cost per kilometer
      const travelModes ={'Air':[750,0.05],'Water':[50,0.02],'Road':[180,1.8],'Rail':[300,0.01]}
-     const Air = 'Air'
-     //{travelModes.transportMode[0]} hours travel time and a cost of up to {travelModes.transportMode[1]} US dollars
+
     return(
         <div className='form-container'>
             Calculate distance, cost and travel time.
@@ -86,8 +87,8 @@ function Home(){
             {distanceData&& 
             <div>
                 <p>{origin} is at Latitude:{distanceData.origin.latitude} {' '}Longitude:{distanceData.origin.longitude}</p>
-                <p>{destination} is at <span style={{display: "inline-block;"}}>Latitude:{distanceData.destination.latitude}</span>
-                <span style={{display: "inline-block;"}}>{' '}Longitude:{distanceData.destination.longitude}</span></p>
+                <p>{destination} is at <span style={{display: "inline-block"}}>Latitude:{distanceData.destination.latitude}</span>
+                <span style={{display: "inline-block"}}>{' '}Longitude:{distanceData.destination.longitude}</span></p>
                 <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers by {transportMode} 
                 {' '} it will take you {Math.round(distanceData.distance / travelModes[transportMode][0])} hours and cost {' '}
                 {Math.round(travelModes[transportMode][1]* distanceData.distance)} US dollars. </p>
