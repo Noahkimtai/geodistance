@@ -23,13 +23,13 @@ class DistanceCalculatorController < ApplicationController
         destination_long = destination_data['lon'].to_f
         destination_country = destination_data['display_name'].split(" ").last
         
-        # Calculate the distance between the two points
+        # Calculate the distance between the two points using haversine formula
         lat_change = destination_lat - origin_lat
         long_change = destination_long-origin_long
         earth_radius = 6371.0
         a = Math.sin(lat_change/2)**2 + Math.cos(origin_lat) * Math.cos(destination_lat) * Math.sin(long_change/2)**2
         c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-        distance = earth_radius * c * 1.60934
+        distance = earth_radius * c
 
         # Add the data from user to database
         Country.find_or_create_by(name: origin_country)
