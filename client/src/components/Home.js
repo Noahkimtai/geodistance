@@ -85,11 +85,12 @@ function Home(){
             {isLoading&& <div> Calculating........</div>}
             {distanceData&& 
             <div>
-                <p>{origin} is at Latitude:{distanceData.origin.latitude}Longitude:{distanceData.origin.longitude}</p>
-                <p>{destination} is at <span> Latitude:{distanceData.destination.latitude}</span>
-                <span>Longitude:{distanceData.destination.longitude}</span></p>
+                <p>{origin} is at Latitude:{distanceData.origin.latitude} {' '}Longitude:{distanceData.origin.longitude}</p>
+                <p>{destination} is at <span style={{display: "inline-block;"}}>Latitude:{distanceData.destination.latitude}</span>
+                <span style={{display: "inline-block;"}}>{' '}Longitude:{distanceData.destination.longitude}</span></p>
                 <p>The distance between {origin} and {destination} is {distanceData.distance} kilometers by {transportMode} 
-                it will take you {Math.round(distanceData.distance / travelModes[transportMode][0])} hours and cost {Math.round(travelModes[transportMode][1]* distanceData.distance)} US dollars </p>
+                {' '} it will take you {Math.round(distanceData.distance / travelModes[transportMode][0])} hours and cost {' '}
+                {Math.round(travelModes[transportMode][1]* distanceData.distance)} US dollars. </p>
             </div>
             }
             {distanceData&& 
