@@ -14,8 +14,13 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install --binstubs --jobs 4 --retry 3
 
 # Copy package.json and package-lock.json and install dependencies
-COPY package.json package-lock.json ./
-RUN npm install --check-files
+# Copy client directory and install npm dependencies
+COPY client ./client
+WORKDIR /app/client
+RUN npm install --binstubs --jobs 4 --retry 3 --verbose
+
+# Set working directory back to the root
+WORKDIR /app
 
 # Copy the rest of the application code
 COPY . .
