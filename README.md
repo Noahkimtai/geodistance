@@ -27,30 +27,20 @@ rails db:seed
 npm install --prefix client
 ```
 ## Instructions
-To set up your backend, run:
-
-```console
-$ bundle install
-```
-
-You can run the Rails application in one terminal by running:
+To set up your backend, You can run the Rails application in one terminal by running:
 
 ```console
 $ rails s
 ```
 
-The React application is in the `client` directory. To set it up, from the root directory, run:
-
-```console
-$ npm install --prefix client
-```
-Using `--prefix client` will run the npm command within the `client` directory.
-
-Then, [open another terminal][new terminal] and run React:
+The React application is in the `client` directory. To set it up, from the root directory, Then, [open another terminal][new terminal] and run React. On the terminal run:
 
 ```console
 $ npm start --prefix client
 ```
+
+Using `--prefix client` will run the npm command within the `client` directory.
+
 Each application will run on its own port on `localhost`:
 
 - React: [http://localhost:4000]
