@@ -1,5 +1,5 @@
 ## Introduction
-This is a simple tool that facilitates the collection of data on travel route patterns and places. Using this information provides travel time, and cost to the user.
+This is a simple tool that facilitates collection of data on travel routes patterns and places. Using this information provided by the user it then calculates approximate travel time, and cost for the user.
 ![plot](homepage.png)
 
 ## User Stories
@@ -8,18 +8,17 @@ This is a simple tool that facilitates the collection of data on travel route pa
 1. The user can select the mode of transport
 1. The user will get the distance between the two points
 1. The user will get the total approximate travel time
-1. The user will get a description of his/her destination as per other users
 1. User can add something interesting to the description of a route
 1. User can view places commonly traveled by others on a map
 ## Requirements
-- Ruby 3.0.2p107
+- Ruby 3.0.2
 - Rails version: 7.0.4.2
 - NodeJS (v16), and npm
 - Postgresql
-- Leaflet-react
+- React-Leaflet
 
 ## Setup
-When you're ready to start building your project, run:
+If you have latest Ruby and ruby on rails installed and Node run:
 ```sh
 bundle install
 rails db:create
@@ -28,13 +27,6 @@ rails db:seed
 npm install --prefix client
 ```
 ## Instructions
-The React application is in the `client` directory. To set it up, from the root directory, run:
-
-```console
-$ npm install --prefix client
-```
-Using `--prefix client` will run the npm command within the `client` directory.
-
 To set up your backend, run:
 
 ```console
@@ -46,6 +38,14 @@ You can run the Rails application in one terminal by running:
 ```console
 $ rails s
 ```
+
+The React application is in the `client` directory. To set it up, from the root directory, run:
+
+```console
+$ npm install --prefix client
+```
+Using `--prefix client` will run the npm command within the `client` directory.
+
 Then, [open another terminal][new terminal] and run React:
 
 ```console
