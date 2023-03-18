@@ -1,33 +1,42 @@
-version: '3'
+version: '3.9'
+
 services:
-  web:
-    build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: chep171615
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: geodistance_development
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgresql://postgres:chep171615@db/geodistance_development
+    volumes:
+      - .:/app
+      - /app/tmp/cache
+      - /app/vendor/bundle
     ports:
       - "3000:3000"
     depends_on:
       - db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: chep171615
-      POSTGRES_HOST: localhost
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: geodistance_development
 
-  client:
-    build: ./client
-    command: npm start
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    volumes:
+      - ./client:/app/client
     ports:
       - "4000:4000"
     depends_on:
-      - web
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: chep171615
-      POSTGRES_HOST: localhost
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: geodistance_development
-
+      - backend
