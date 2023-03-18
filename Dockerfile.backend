@@ -13,6 +13,10 @@ WORKDIR /geodistance
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --binstubs --jobs 4 --retry 3
 
+# Copy package.json and package-lock.json and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install --check-files
+
 # Copy the rest of the application code
 COPY . .
 
