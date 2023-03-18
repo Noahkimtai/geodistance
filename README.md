@@ -1,5 +1,6 @@
 ## Introduction
 This is a simple tool that facilitates the collection of data on travel route patterns and places. Using this information provides travel time, and cost to the user.
+![plot](homepage.png)
 
 ## User Stories
 1. The user can enter the destination name into an online form
