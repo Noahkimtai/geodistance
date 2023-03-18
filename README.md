@@ -23,7 +23,6 @@ If you have latest Ruby and ruby on rails installed and Node run:
 bundle install
 rails db:create
 rails db:migrate
-rails db:seed
 npm install --prefix client
 ```
 ## Instructions
